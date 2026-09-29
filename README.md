@@ -1,27 +1,41 @@
-# FrontPruebaTec
+# Tienda Móvil – Prueba técnica Front-End
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.2.
+Mini SPA para comprar móviles, hecha con **Angular** (standalone components + signals) y **Sass**.
 
-## Development server
+## Scripts
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+| Script          | Comando         | Descripción                    |
+| --------------- | --------------- | ------------------------------ |
+| START           | `npm start`     | Modo desarrollo (`ng serve`)   |
+| BUILD           | `npm run build` | Compilación de producción      |
+| TEST            | `npm test`      | Tests unitarios (Karma/Jasmine)|
+| LINT            | `npm run lint`  | Comprobación de código (ESLint)|
 
-## Code scaffolding
+```bash
+npm install
+ng add @ngrx/store @ngrx/effects   # si aún no están instalados
+npm start   # http://localhost:4200
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Funcionalidad
 
-## Build
+- **PLP** (`/`): listado en rejilla (máx. 4 por fila, adaptativo), búsqueda en tiempo real por marca y modelo.
+- **PDP** (`/product/:id`): imagen, características, selectores de almacenamiento y color (preseleccionados si solo hay una opción) y botón de añadir.
+- **Header**: título como enlace al inicio, breadcrumbs y contador de la cesta visible en todas las vistas.
+- **Estado (NgRx / Redux)**: `@ngrx/store` + `@ngrx/effects`. Las respuestas del API se guardan en el store junto a su `fetchedAt`; los effects solo llaman al API si el dato tiene más de 1 hora (`core/store/cache.util.ts`). Almacenaje en memoria, en cliente.
+- **Cesta**: `POST /api/cart` devuelve `count`, que se guarda en el store y se muestra en la cabecera de todas las vistas.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Estructura
 
-## Running unit tests
+```
+src/app
+├── core/       modelos, servicios HTTP y store NgRx (catalog, cart)
+├── shared/     header
+└── features/   product-list (item, search-bar) · product-detail (image, description, actions)
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Notas
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- La API tiene erratas (`secondaryCmera`, `dimentions`); el modelo las respeta.
+- Algunos productos pueden venir sin precio; se muestra "Precio no disponible".
+- Hosting gratuito de la API: la primera petición puede tardar unos segundos (arranque en frío).

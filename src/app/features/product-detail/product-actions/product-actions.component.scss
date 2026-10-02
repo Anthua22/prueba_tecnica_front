@@ -1,0 +1,19 @@
+.title { margin: 0 0 0.75rem; font-size: 1.1rem; }
+.group { border: 0; padding: 0; margin: 0 0 1rem; legend { padding: 0; margin-bottom: 0.4rem; color: var(--muted); } }
+.options { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+.chip {
+  padding: 0.45rem 0.9rem; font: inherit; cursor: pointer; color: var(--ink);
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+
+  &--active { color: #fff; background: var(--accent); border-color: var(--accent); }
+}
+
+.add {
+  width: 100%; padding: 0.8rem; font: inherit; font-weight: 700; cursor: pointer;
+  color: #fff; background: var(--accent-dark); border: 0; border-radius: var(--radius);
+
+  &:disabled { opacity: 0.45; cursor: not-allowed; }
+}
+
+.feedback { margin: 0.75rem 0 0; color: var(--accent-dark); &--error { color: var(--danger); } }

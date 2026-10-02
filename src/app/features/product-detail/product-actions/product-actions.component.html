@@ -1,0 +1,33 @@
+<h2 class="title">Opciones</h2>
+
+<fieldset class="group">
+  <legend>Almacenamiento</legend>
+  <div class="options">
+    @for (s of storages(); track s.code) {
+      <button type="button" class="chip" [class.chip--active]="storageCode() === s.code"
+        [attr.aria-pressed]="storageCode() === s.code" (click)="storageCode.set(s.code)">
+        {{ s.name }}
+      </button>
+    }
+  </div>
+</fieldset>
+
+<fieldset class="group">
+  <legend>Color</legend>
+  <div class="options">
+    @for (c of colors(); track c.code) {
+      <button type="button" class="chip" [class.chip--active]="colorCode() === c.code"
+        [attr.aria-pressed]="colorCode() === c.code" (click)="colorCode.set(c.code)">
+        {{ c.name }}
+      </button>
+    }
+  </div>
+</fieldset>
+
+<button type="button" class="add" [disabled]="!canAdd()" (click)="add()">
+  {{ adding() ? 'Añadiendo…' : 'Añadir a la cesta' }}
+</button>
+
+@if (feedback(); as f) {
+  <p class="feedback" [class.feedback--error]="!f.ok" role="status">{{ f.text }}</p>
+}

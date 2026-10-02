@@ -1,0 +1,11 @@
+.pdp {
+  padding: 1.5rem 0 3rem;
+
+  &__back { display: inline-block; margin-bottom: 1rem; }
+
+  &__layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
+  &__side { display: flex; flex-direction: column; gap: 1rem; }
+  &__panel { display: block; padding: 1rem 1.25rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+}
+
+@media (max-width: 768px) { .pdp__layout { grid-template-columns: 1fr; } }

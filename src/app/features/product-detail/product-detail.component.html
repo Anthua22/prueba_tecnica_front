@@ -1,0 +1,19 @@
+<section class="pdp">
+  <a class="pdp__back" routerLink="/">← Volver al listado</a>
+
+  @if (loading()) {
+    <p class="status">Cargando producto…</p>
+  } @else {
+    @if (product(); as p) {
+      <div class="pdp__layout">
+        <app-product-image [src]="p.imgUrl" [alt]="p.brand + ' ' + p.model" />
+        <div class="pdp__side">
+          <app-product-description class="pdp__panel" [product]="p" />
+          <app-product-actions class="pdp__panel" [product]="p" />
+        </div>
+      </div>
+    } @else {
+      <p class="status status--error">No se ha podido cargar este producto.</p>
+    }
+  }
+</section>

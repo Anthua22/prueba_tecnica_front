@@ -1,0 +1,47 @@
+<section class="container py-4">
+  <div class="row align-items-center g-3 mb-4">
+    <div class="col">
+      <h1 class="h3 fw-bold mb-0">Móviles</h1>
+    </div>
+
+    <div class="col-12 col-md-5 col-lg-4">
+      <app-search-bar [value]="query()" (queryChange)="query.set($event)" />
+    </div>
+  </div>
+
+  @if (loading()) {
+    <div class="d-flex justify-content-center py-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+    </div>
+  } @else if (error()) {
+    <div
+      class="alert alert-danger d-flex align-items-center justify-content-between"
+    >
+      <span> No se han podido cargar los productos. </span>
+
+      <button
+        type="button"
+        class="btn btn-outline-danger btn-sm"
+        (click)="load()"
+      >
+        Reintentar
+      </button>
+    </div>
+  } @else if (filtered().length === 0) {
+    <div class="text-center py-5">
+      <h2 class="h5">No hemos encontrado resultados</h2>
+
+      <p class="text-muted">Ningún móvil coincide con «{{ query() }}».</p>
+    </div>
+  } @else {
+    <div class="row g-4">
+      @for (product of filtered(); track product.id) {
+        <div class="col-12 col-sm-6 col-lg-3">
+          <app-product-item [product]="product" />
+        </div>
+      }
+    </div>
+  }
+</section>

@@ -1,6 +1,6 @@
 # Tienda Móvil – Prueba técnica Front-End
 
-Mini SPA para comprar móviles, hecha con **Angular** (standalone components + signals) y **Sass**.
+Mini SPA para comprar móviles, hecha con **Angular 17.1+** (standalone components + signals) y **Sass**.
 
 ## Scripts
 
@@ -13,7 +13,7 @@ Mini SPA para comprar móviles, hecha con **Angular** (standalone components + s
 
 ```bash
 npm install
-ng add @ngrx/store @ngrx/effects   # si aún no están instalados
+ng add @ngrx/store@17 && ng add @ngrx/effects@17   # si aún no están instalados
 npm start   # http://localhost:4200
 ```
 

@@ -1,4 +1,4 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, isDevMode } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -10,6 +10,7 @@ import { catalogFeature } from './core/store/catalog.reducer';
 import { provideEffects } from '@ngrx/effects';
 import * as catalogEffects from './core/store/catalog.effects';
 import * as cartEffects from './core/store/cart.effects';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 
 export const appConfig: ApplicationConfig = {
@@ -20,6 +21,7 @@ export const appConfig: ApplicationConfig = {
     provideState(catalogFeature),
     provideState(cartFeature),
     provideEffects(catalogEffects, cartEffects),
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
   ],
 };
 

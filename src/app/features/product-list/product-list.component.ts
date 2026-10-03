@@ -30,7 +30,7 @@ export class ProductListComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.breadcrumbs.set([{ label: 'Móviles' }]);
+    this.breadcrumbs.set([{ label: 'Productos' }]);
     this.load();
   }
 

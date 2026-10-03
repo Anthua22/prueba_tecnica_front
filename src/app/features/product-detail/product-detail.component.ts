@@ -18,25 +18,67 @@ import { ProductImageComponent } from './product-image/product-image.component';
   styleUrl: './product-detail.component.scss',
 })
 export class ProductDetailComponent {
+
   private readonly route = inject(ActivatedRoute);
   private readonly store = inject(Store);
   private readonly breadcrumbs = inject(BreadcrumbService);
 
-  protected readonly loading = this.store.selectSignal(catalogFeature.selectDetailLoading);
-  protected readonly error = this.store.selectSignal(catalogFeature.selectDetailError);
+  protected readonly loading =
+    this.store.selectSignal(
+      catalogFeature.selectDetailLoading
+    );
+
+  protected readonly error =
+    this.store.selectSignal(
+      catalogFeature.selectDetailError
+    );
 
   protected readonly product = toSignal(
     this.route.paramMap.pipe(
-      map((params) => params.get('id') ?? ''),
-      tap((id) => {
-        this.breadcrumbs.set([{ label: 'Móviles', url: '/' }, { label: 'Detalle' }]);
-        this.store.dispatch(catalogActions.loadProduct({ id }));
+
+      map(params => params.get('id') ?? ''),
+
+      tap(id => {
+        this.breadcrumbs.set([
+          {
+            label: 'Productos',
+            url: '/products'
+          },
+          {
+            label: 'Detalle'
+          }
+        ]);
+
+        this.store.dispatch(
+          catalogActions.loadProduct({ id })
+        );
       }),
-      switchMap((id) => this.store.select(selectProductDetail(id))),
-      tap((p) => {
-        if (p) this.breadcrumbs.set([{ label: 'Móviles', url: '/' }, { label: `${p.brand} ${p.model}` }]);
+
+      switchMap(id =>
+        this.store.select(
+          selectProductDetail(id)
+        )
+      ),
+
+      tap(product => {
+        if (!product) {
+          return;
+        }
+
+        this.breadcrumbs.set([
+          {
+            label: 'Productos',
+            url: '/products'
+          },
+          {
+            label: `${product.brand} ${product.model}`
+          }
+        ]);
       }),
+
     ),
-    { initialValue: null },
+    {
+      initialValue: null
+    }
   );
 }

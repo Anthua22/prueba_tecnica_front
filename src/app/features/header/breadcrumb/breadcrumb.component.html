@@ -1,0 +1,29 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb mb-0">
+
+    <li class="breadcrumb-item">
+      <a routerLink="/">
+        Inicio
+      </a>
+    </li>
+
+    @for (item of items(); track $index) {
+
+      @if (item.url) {
+        <li class="breadcrumb-item">
+          <a [routerLink]="item.url">
+            {{ item.label }}
+          </a>
+        </li>
+      } @else {
+        <li
+          class="breadcrumb-item active"
+          aria-current="page">
+          {{ item.label }}
+        </li>
+      }
+
+    }
+
+  </ol>
+</nav>

@@ -6,7 +6,7 @@
   padding: 0.45rem 0.9rem; font: inherit; cursor: pointer; color: var(--ink);
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
 
-  &--active { color: #fff; background: var(--accent); border-color: var(--accent); }
+  &--active { color: #e40c0c; background: var(--accent); border-color: var(--accent); }
 }
 
 .add {

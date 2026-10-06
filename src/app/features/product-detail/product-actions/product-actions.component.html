@@ -1,33 +1,82 @@
-<h2 class="title">Opciones</h2>
+<form (ngSubmit)="add()" class="d-flex flex-column gap-4">
 
-<fieldset class="group">
-  <legend>Almacenamiento</legend>
-  <div class="options">
-    @for (s of storages(); track s.code) {
-      <button type="button" class="chip" [class.chip--active]="storageCode() === s.code"
-        [attr.aria-pressed]="storageCode() === s.code" (click)="storageCode.set(s.code)">
-        {{ s.name }}
-      </button>
-    }
-  </div>
-</fieldset>
+  <h2 class="h5 fw-bold mb-0">
+    Opciones
+  </h2>
 
-<fieldset class="group">
-  <legend>Color</legend>
-  <div class="options">
-    @for (c of colors(); track c.code) {
-      <button type="button" class="chip" [class.chip--active]="colorCode() === c.code"
-        [attr.aria-pressed]="colorCode() === c.code" (click)="colorCode.set(c.code)">
-        {{ c.name }}
-      </button>
-    }
-  </div>
-</fieldset>
+  <!-- Almacenamiento -->
+  <fieldset>
+    <legend class="form-label fw-semibold">
+      Almacenamiento
+    </legend>
 
-<button type="button" class="add" [disabled]="!canAdd()" (click)="add()">
-  {{ adding() ? 'Añadiendo…' : 'Añadir a la cesta' }}
-</button>
+    <div class="d-flex flex-wrap gap-2">
+      @for (s of storages(); track s.code) {
+        <input
+          type="radio"
+          class="btn-check"
+          name="storage"
+          [id]="'storage-' + s.code"
+          [value]="s.code"
+          [checked]="storageCode() === s.code"
+          (change)="storageCode.set(s.code)"
+        />
 
-@if (feedback(); as f) {
-  <p class="feedback" [class.feedback--error]="!f.ok" role="status">{{ f.text }}</p>
-}
+        <label
+          class="btn btn-outline-success"
+          [for]="'storage-' + s.code"
+        >
+          {{ s.name }}
+        </label>
+      }
+    </div>
+  </fieldset>
+
+  <!-- Color -->
+  <fieldset>
+    <legend class="form-label fw-semibold">
+      Color
+    </legend>
+
+    <div class="d-flex flex-wrap gap-2">
+      @for (c of colors(); track c.code) {
+        <input
+          type="radio"
+          class="btn-check"
+          name="color"
+          [id]="'color-' + c.code"
+          [value]="c.code"
+          [checked]="colorCode() === c.code"
+          (change)="colorCode.set(c.code)"
+        />
+
+        <label
+          class="btn btn-outline-success"
+          [for]="'color-' + c.code"
+        >
+          {{ c.name }}
+        </label>
+      }
+    </div>
+  </fieldset>
+
+  <!-- Submit -->
+  <button
+    type="submit"
+    class="btn btn-primary w-100"
+    [disabled]="!canAdd()"
+  >
+    {{ adding() ? 'Añadiendo…  ' : 'Añadir a la cesta ' }} <i class="bi bi-cart bi-lg"></i>
+  </button>
+
+  @if (feedback(); as f) {
+    <div
+      class="alert mb-0"
+      role="alert"
+      [ngClass]="f.ok ? 'alert-success' : 'alert-danger'"
+    >
+      {{ f.text }}
+    </div>
+  }
+
+</form>

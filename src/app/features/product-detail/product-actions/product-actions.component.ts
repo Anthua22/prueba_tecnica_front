@@ -10,12 +10,14 @@ import { ProductDetail } from '../../../core/models/product.model';
 import { Store } from '@ngrx/store';
 import { cartActions } from '../../../core/store/cart.actions';
 import { cartFeature } from '../../../core/store/cart.reducer';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-product-actions',
   templateUrl: './product-actions.component.html',
   styleUrl: './product-actions.component.scss',
   standalone: true,
+  imports: [NgClass],
 })
 export class ProductActionsComponent {
   private readonly store = inject(Store);

@@ -8,17 +8,16 @@ const join = (v: string | string[] | undefined) =>
   selector: 'app-product-description',
   standalone: true,
   template: `
-    <h2 class="title">Características</h2>
+    <h2>Características</h2>
     <dl class="list">
       @for (row of rows(); track row.label) {
-        <div class="row"><dt>{{ row.label }}</dt><dd>{{ row.value }}</dd></div>
+        <div class="row"><dt class="col">{{ row.label }}</dt><dd class="col">{{ row.value }}</dd></div>
       }
     </dl>
   `,
   styles: `
     .title { margin: 0 0 0.75rem; font-size: 1.1rem; }
     .list { margin: 0; }
-    .row { display: flex; gap: 1rem; padding: 0.4rem 0; border-bottom: 1px solid var(--line); }
     dt { flex: 0 0 9rem; color: var(--muted); }
     dd { margin: 0; }
   `

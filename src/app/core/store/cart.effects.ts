@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, exhaustMap, map, of, tap } from 'rxjs';
+import { catchError, exhaustMap, map, of } from 'rxjs';
 import { CartService } from '../services/cart.service';
 import { cartActions } from './cart.actions';
 

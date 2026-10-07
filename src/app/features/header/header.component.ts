@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, effect, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { Store } from '@ngrx/store';

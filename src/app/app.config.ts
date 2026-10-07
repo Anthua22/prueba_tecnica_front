@@ -2,7 +2,6 @@ import { ApplicationConfig, isDevMode } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideClientHydration } from '@angular/platform-browser';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { cartFeature } from './core/store/cart.reducer';

@@ -52,7 +52,7 @@ Bootstrap y Bootstrap Icons se cargan desde `angular.json`, en `styles`:
 
 ## Funcionalidad
 
-- **PLP** (`/`): listado en rejilla (máx. 4 por fila, adaptativo), búsqueda en tiempo real por marca y modelo.
+- **PLP** (`/products`): listado en rejilla (máx. 4 por fila, adaptativo), búsqueda en tiempo real por marca y modelo.
 - **PDP** (`/product/:id`): imagen, características, selectores de almacenamiento y color (preseleccionados si solo hay una opción) y botón de añadir.
 - **Header**: título como enlace al inicio, breadcrumbs y contador de la cesta visible en todas las vistas.
 - **Estado (NgRx / Redux)**: `@ngrx/store` + `@ngrx/effects`. Las respuestas del API se guardan en el store junto a su `fetchedAt`; los effects solo llaman al API si el dato no existe o tiene más de 1 hora (`core/store/cache.util.ts`). Almacenaje en memoria, en cliente.

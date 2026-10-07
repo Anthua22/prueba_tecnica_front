@@ -1,4 +1,4 @@
-<form (ngSubmit)="add()" class="d-flex flex-column gap-4">
+<form class="d-flex flex-column gap-4">
 
   <h2 class="h5 fw-bold mb-0">
     Opciones
@@ -62,20 +62,22 @@
 
   <!-- Submit -->
   <button
-    type="submit"
+    type="button"
     class="btn btn-primary w-100"
     [disabled]="!canAdd()"
+    (click)="add()"
   >
-    {{ adding() ? 'Añadiendo…  ' : 'Añadir a la cesta ' }} <i class="bi bi-cart bi-lg"></i>
+    {{ adding() ? 'Añadiendo…  ' : 'Añadir a la cesta ' }} <i class="bi bi-cart me-2"></i>
   </button>
 
   @if (feedback(); as f) {
     <div
-      class="alert mb-0"
+      class="alert mb-0 alert-dismissible"
       role="alert"
       [ngClass]="f.ok ? 'alert-success' : 'alert-danger'"
     >
-      {{ f.text }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      <i class="bi"  [class.bi-check]="f.ok"></i> {{ f.text }}
     </div>
   }
 

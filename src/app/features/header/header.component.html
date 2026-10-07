@@ -6,6 +6,15 @@
       <a class="nav-link" routerLink="/products" routerLinkActive="active">
         Móviles
       </a>
+
+      <div class="text-light d-flex align-items-center gap-2">
+        <button type="button" class="btn btn-link">
+          <span class="text-light d-flex align-items-center gap-2">
+            <i class="bi bi-cart-fill"></i>
+            <span class="badge badge-light">{{ cartCount }}</span>
+          </span>
+        </button>
+      </div>
     </div>
   </nav>
 

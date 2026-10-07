@@ -14,8 +14,8 @@ export const cartFeature = createFeature({
   reducer: createReducer(
     initialCartState,
     on(cartActions.add, (s) => ({ ...s, adding: true, feedback: null })),
-    on(cartActions.addSuccess, (s, { count }) => ({
-      count,
+    on(cartActions.addSuccess, (s) => ({
+      count: s.count + 1,
       adding: false,
       feedback: { ok: true, text: 'Producto añadido a la cesta.' },
     })),
